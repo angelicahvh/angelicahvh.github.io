@@ -32,6 +32,16 @@
         ::-webkit-scrollbar-thumb {
             background: var(--primary-color);
         }
+        @keyframes fadeLoad {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         body {
             height: 100vh;
             width: 100vh;
@@ -60,14 +70,20 @@
             padding-left: 50px;
             gap: 15px;
             border: 1px solid var(--base-border-color);
+            opacity: 0;
+            animation: fadeLoad 1s ease-out forwards;
         }
         .nav-pfp {
             height: 75px;
             width: 75px;
             border-radius: 100%;
+            opacity: 0;
+            animation: fadeLoad 1s ease-out forwards;
         }
         .username {
             font-size: 32px;
+            opacity: 0;
+            animation: fadeLoad 1s ease-out forwards;
         }
         .right-content {
             width: 100%;
@@ -76,6 +92,8 @@
             justify-content: flex-end;
             gap: 15px;
             padding-right: 50px;
+            opacity: 0;
+            animation: fadeLoad 1s ease-out forwards;
         }
         .nav-link {
             font-size: 32px;
@@ -131,18 +149,26 @@
             height: 150px;
             width: 150px;
             border-radius: 100%;
+            opacity: 0;
+            animation: fadeLoad 1s ease-out forwards;
         }
         .section-title {
             font-size: 42px;
-        }
-        .profile-text {
-            font-size: 42px;
-            color: var(--primary-color);
+            opacity: 0;
+            animation: fadeLoad 1s ease-out forwards;
         }
         .separator {
             width: calc(100% + 100px);
             height: 5px;
             background-color: var(--primary-color);
+            opacity: 0;
+            animation: fadeLoad 1s ease-out forwards;
+        }
+        .profile-text {
+            font-size: 42px;
+            color: var(--primary-color);
+            opacity: 0;
+            animation: fadeLoad 1s ease-out forwards;
         }
         .socials-flex {
             display: flex;
@@ -151,6 +177,8 @@
             justify-content: flex-start;
             flex-wrap: wrap;
             gap: 15px;
+            opacity: 0;
+            animation: fadeLoad 1s ease-out forwards;
         }
         .socials-icon-container {
             height: 50px;
@@ -207,6 +235,13 @@
             font-weight: bold;
             font-size: 12px;
         }
+        .scroll-animate {
+            opacity: 0;
+        }
+        .scroll-fade {
+            opacity: 0;
+            animation: fadeLoad 1s ease-out forwards;
+        }
     </style>
 </head>
 <body>
@@ -238,27 +273,27 @@
                     <span class="section-title">My <a style="color: var(--primary-color);">Skills</a></span>
                     <div class="separator"></div>
                     <div class="skills-flex">
-                        <div class="skill-box">
+                        <div class="skill-box scroll-animate">
                             <img class="skill-box-icon" src="rsrc/htmlcss.png">
                             <a class="skill-box-title">HTML & CSS</a>
                         </div>
-                        <div class="skill-box">
+                        <div class="skill-box scroll-animate">
                             <img class="skill-box-icon" src="rsrc/js.png">
                             <a class="skill-box-title">Javascript</a>
                         </div>
-                        <div class="skill-box">
+                        <div class="skill-box scroll-animate">
                             <img class="skill-box-icon" src="rsrc/php.png">
                             <a class="skill-box-title">PHP</a>
                         </div>
-                        <div class="skill-box">
+                        <div class="skill-box scroll-animate">
                             <img class="skill-box-icon" src="rsrc/c-sharp.png">
                             <a class="skill-box-title">C-Sharp</a>
                         </div>
-                        <div class="skill-box">
+                        <div class="skill-box scroll-animate">
                             <img class="skill-box-icon" src="rsrc/cplusplus.png">
                             <a class="skill-box-title">C++</a>
                         </div>
-                        <div class="skill-box">
+                        <div class="skill-box scroll-animate">
                             <img class="skill-box-icon" src="rsrc/python.png">
                             <a class="skill-box-title">Python</a>
                         </div>
@@ -270,23 +305,38 @@
     </div>
 </body>
 <script>
-sections = document.querySelectorAll(".section");
-links = document.querySelectorAll(".nav-link");
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        index = Array.from(sections).indexOf(entry.target);
-        if (entry.intersectionRatio > 0.51) {
-            links[index].classList.add("nav-link-selected");
-        } else {
-            links[index].classList.remove("nav-link-selected");
-        }
+    sections = document.querySelectorAll(".section");
+    tabObserver = new IntersectionObserver(function(entries) {
+        links = document.querySelectorAll(".nav-link");
+        entries.forEach(entry => {
+            index = Array.from(sections).indexOf(entry.target);
+            if (entry.intersectionRatio > 0.51) {
+                links[index].classList.add("nav-link-selected");
+            } else {
+                links[index].classList.remove("nav-link-selected");
+            }
+        });
+    }, {
+        threshold: 0.51
     });
-}, {
-    threshold: 0.51
-});
-sections.forEach(element => {
-    observer.observe(element);
-});
-observer.observe(document.querySelector)
+    sections.forEach(element => {
+        tabObserver.observe(element);
+    });
+
+
+    animatedElements = document.querySelectorAll(".scroll-animate");
+    scrollObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            index = Array.from(animatedElements).indexOf(entry.target);
+            if (entry.intersectionRatio > 0.10) {
+                animatedElements[index].classList.add("scroll-fade");
+            }
+        });
+    }, {
+        threshold: 0.10
+    });
+    animatedElements.forEach(element => {
+        scrollObserver.observe(element);
+    });
 </script>
 </html>
