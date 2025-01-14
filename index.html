@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+    <script src="https://kit.fontawesome.com/21d6882367.js" crossorigin="anonymous"></script>
+    <title>Angelicahvh</title>
+    <style>
+        :root {
+            --background-color: #111;
+            --base-bg-color: #151515;
+            --base-border-color: #393939;
+            --primary-color: #C8ACD6;
+            --text-primary: white;
+            --font-family: "Comfortaa";
+        }
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            color: var(--text-primary);
+            transition-duration: 0.2s;
+            text-decoration: none;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+        }
+        body {
+            height: 100vh;
+            width: 100vh;
+            background-color: var(--background-color);
+            font-family: var(--font-family);
+            user-select: none;
+            scroll-behavior: smooth;
+        }
+        .container {
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .nav-flex {
+            height: 125px;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 50px;
+            gap: 15px;
+            border: 1px solid var(--base-border-color);
+        }
+        .nav-pfp {
+            height: 75px;
+            width: 75px;
+            border-radius: 100%;
+        }
+        .username {
+            font-size: 32px;
+        }
+        .right-content {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            gap: 15px;
+            padding-right: 50px;
+        }
+        .nav-link {
+            font-size: 32px;
+            position: relative;
+            font-weight: bold;
+        }
+        .nav-link:hover {
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+        .nav-link::after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition-duration: 0.2s;
+            transform: scale(0);
+        }
+        .nav-link:hover::after {
+            color: var(--primary-color);
+            transform: scale(1);
+        }
+        .nav-link-selected {
+            color: var(--primary-color);
+        }
+        .nav-link-selected::after {
+            transform: scale(1);
+        }
+        .content {
+            flex-shrink: 1;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            overflow-y: auto;
+        }
+        .section {
+            flex-shrink: 0;
+            justify-content: center;
+        }
+        .section-flex {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+        }
+        .profile-pfp {
+            height: 150px;
+            width: 150px;
+            border-radius: 100%;
+        }
+        .section-title {
+            font-size: 42px;
+        }
+        .profile-text {
+            font-size: 42px;
+            color: var(--primary-color);
+        }
+        .separator {
+            width: calc(100% + 100px);
+            height: 5px;
+            background-color: var(--primary-color);
+        }
+        .socials-flex {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .socials-icon-container {
+            height: 50px;
+            width: 50px;
+            border: 1px solid var(--primary-color);
+            border-radius: 100%;
+            box-shadow: inset 0px 0px 10px var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .socials-icon-container:hover {
+            transform: translateY(-5px) scale(1.1);
+            cursor: pointer;
+        }
+        .social-icon {
+            font-size: 32px;
+            color: var(--primary-color);
+        }
+        .skills-flex {
+            max-width: 500px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            gap: 15px;
+        }
+        .skill-box {
+            width: 150px;
+            background-color: var(--base-bg-color);
+            border: 1px solid var(--base-border-color);
+            border-radius: 15px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+        }
+        .skill-box:hover {
+            cursor: pointer;
+            border: 1px solid var(--primary-color);
+            box-shadow: inset 0px 0px 10px var(--primary-color);
+        }
+        .skill-box-icon {
+            max-height: 50px;
+        }
+        .skill-box:hover .skill-box-icon {
+            color: var(--primary-color);
+        }
+        .skill-box-title {
+            font-weight: bold;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-flex">
+            <img class="nav-pfp" src="pfp.jpg">
+            <span class="username">Angelica<a style="color: var(--primary-color);">hvh</a></span>
+            <div class="right-content">
+                <a class="nav-link" href="#home">Home</a>
+                <a class="nav-link" href="#skills">Skills</a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="content section" id="home">
+                <div class="section-flex">
+                    <img class="profile-pfp" src="pfp.jpg">
+                    <span class="section-title">Angelica<a style="color: var(--primary-color);">hvh</a></span>
+                    <div class="separator"></div>
+                    <div class="profile-text">Full-stack Developer</div>
+                    <div class="socials-flex">
+                        <div class="socials-icon-container"><i class="fa-brands fa-discord social-icon"></i></div>
+                        <div class="socials-icon-container"><i class="fa-solid fa-globe social-icon"></i></div>
+                        <div class="socials-icon-container"><i class="fa-brands fa-bitcoin social-icon"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content section" id="skills">
+                <div class="section-flex">
+                    <span class="section-title">My <a style="color: var(--primary-color);">Skills</a></span>
+                    <div class="separator"></div>
+                    <div class="skills-flex">
+                        <div class="skill-box">
+                            <img class="skill-box-icon" src="rsrc/htmlcss.png">
+                            <a class="skill-box-title">HTML & CSS</a>
+                        </div>
+                        <div class="skill-box">
+                            <img class="skill-box-icon" src="rsrc/js.png">
+                            <a class="skill-box-title">Javascript</a>
+                        </div>
+                        <div class="skill-box">
+                            <img class="skill-box-icon" src="rsrc/php.png">
+                            <a class="skill-box-title">PHP</a>
+                        </div>
+                        <div class="skill-box">
+                            <img class="skill-box-icon" src="rsrc/c-sharp.png">
+                            <a class="skill-box-title">C-Sharp</a>
+                        </div>
+                        <div class="skill-box">
+                            <img class="skill-box-icon" src="rsrc/cplusplus.png">
+                            <a class="skill-box-title">C++</a>
+                        </div>
+                        <div class="skill-box">
+                            <img class="skill-box-icon" src="rsrc/python.png">
+                            <a class="skill-box-title">Python</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script>
+sections = document.querySelectorAll(".section");
+links = document.querySelectorAll(".nav-link");
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        index = Array.from(sections).indexOf(entry.target);
+        if (entry.intersectionRatio > 0.51) {
+            links[index].classList.add("nav-link-selected");
+        } else {
+            links[index].classList.remove("nav-link-selected");
+        }
+    });
+}, {
+    threshold: 0.51
+});
+sections.forEach(element => {
+    observer.observe(element);
+});
+observer.observe(document.querySelector)
+</script>
+</html>
